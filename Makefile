@@ -6,7 +6,7 @@
 #    By: acami <acami@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/14 15:34:26 by acami             #+#    #+#              #
-#    Updated: 2021/06/14 17:36:44 by acami            ###   ########.fr        #
+#    Updated: 2021/06/14 20:26:26 by acami            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,9 @@ SRCS			=	$(addprefix $(SRC_DIR), $(SRC_F))
 OBJ_DIR			=	./objs/
 OBJ_F			=	$(SRC_F:.c=.o)
 OBJS			=	$(addprefix $(OBJ_DIR), $(OBJ_F))
+
+MMD_F			=	$(SRC_F:.c=.d)
+MMDS			=	$(addprefix $(OBJ_DIR), $(MMD_F))
 
 CC				=	gcc
 CFLAGS			=	-Wall -Wextra -Werror -O3
@@ -57,7 +60,9 @@ $(OBJ_DIR) :
 				@echo "$(NAME): $(GREEN)$(OBJ_DIR) was created$(RESET)"
 
 $(OBJ_DIR)%.o :	$(SRC_DIR)%.c		
-				$(CC) $(CFLAGS) -c $(INCLUDES) $< -o $@ -MD
+				$(CC) $(CFLAGS) -c $(INCLUDES) $< -o $@ -MMD
+
+include $(MMDS)
 
 clean_libs :
 				@echo "$(NAME): $(BLUE) Calling clean in $(LIBFT_DIR) $(RESET)"
@@ -91,4 +96,4 @@ fclean :		fclean_libs fclean_objs
 
 re :			fclean all
 
-.PHONY : 		all $(OBJ_DIR) clean_libs clean_objs clean fclean_libs fclean_objs fclean re
+.PHONY : 		all clean_libs clean_objs clean fclean_libs fclean_objs fclean re

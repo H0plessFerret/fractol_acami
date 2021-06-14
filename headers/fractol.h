@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 15:25:22 by acami             #+#    #+#             */
-/*   Updated: 2021/06/14 17:30:27 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/14 20:26:33 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 # define FRACTOL_H
 
 # define	FRACTALS_SUPPORTED	2
-# define	WIN_SIZE_X			1000
-# define	WIN_SIZE_Y			1000
+# define	WIN_WIDTH			1920
+# define	WIN_HEIGHT			1080
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <inttypes.h>
 # include "mlx.h"
 # include "error_messages.h"
 
@@ -60,19 +61,20 @@ struct s_threadInfo
 struct s_fractol{
 	void			*mlx;
 	void			*window;
+	int32_t			width;
+	int32_t			height;
 	t_image			*image;
 	double			x_max;
 	double			x_min;
 	double			y_max;
 	double			y_min;
-	char			*fract_name;
 	t_fractalId		fract_id;
 	t_equation		fractal_equation;
 	t_threadInfo	*thread_info;
 };
 
 // Parse arguments of the program call and return the correct fractal_id
-t_fractalId	parseInput(int argc, char **argv);
+t_fractalId	parseInput(int argc, char **argv, t_fractol *fractol);
 
 // Initializes t_fractol struct
 void		fractolInit(t_fractol *fractol);
