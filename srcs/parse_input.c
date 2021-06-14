@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 14:27:35 by acami             #+#    #+#             */
-/*   Updated: 2021/06/14 20:58:09 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/14 20:59:38 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	xShowHelp(char *bad_param)
 	ft_putendl_fd("[-H 0 < HEIGHT < 2161] <FRACTAL_NAME>", 1);
 	ft_putendl_fd("Fractals supported:", 1);
 	ft_putendl_fd(" --- Mandelbrot", 1);
-	ft_putendl_fd(" --- Julia", 2);
+	ft_putendl_fd(" --- Julia", 1);
 	exit(EXIT_FAILURE);
 }
 
