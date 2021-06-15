@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 19:25:26 by acami             #+#    #+#             */
-/*   Updated: 2021/06/15 22:15:27 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/15 22:35:16 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void	fractolGenerateImage(t_fractol *fractol)
 		while (x_curr < fractol->width)
 		{
 			putPixel(fractol, x_curr, y_curr, generateColour(
-					mandelbrotEqCool(fractol, point.real, point.imaginary),
+					fractol->fractal_equation(fractol, point),
 					fractol->max_iterations));
 			point.real += re_step;
 			++x_curr;

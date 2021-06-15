@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 15:25:22 by acami             #+#    #+#             */
-/*   Updated: 2021/06/15 22:16:27 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/15 22:35:28 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ struct	s_complex
 
 struct s_fractalInfo
 {
-	double			re_max_start;
 	double			re_min_start;
-	double			im_max_start;
+	double			re_max_start;
 	double			im_min_start;
+	double			im_max_start;
 	t_equation		fractal_equation;
 	int32_t			max_iterations;
 	t_complex		extra_param_start;
@@ -109,8 +109,6 @@ bool		ft_strequ(const char *str1, const char *str2);
 
 // Equation for Mandelbrot set
 int32_t		mandelbrotEq(const t_fractol *fractol, t_complex point);
-
-int32_t	mandelbrotEqCool(t_fractol *fractol, double real, double imaginary);
 
 // Equation for Julia set
 int32_t		juliaEq(const t_fractol *fractol, t_complex point);
