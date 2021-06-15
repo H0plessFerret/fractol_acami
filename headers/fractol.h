@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 15:25:22 by acami             #+#    #+#             */
-/*   Updated: 2021/06/15 21:01:59 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/15 22:16:27 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_complex		t_complex;
 typedef struct s_fractol		t_fractol;
 typedef struct s_fractalInfo	t_fractalInfo;
 typedef int						(*t_equation)(const t_fractol *fractol,
-								const t_complex *point);
+								t_complex point);
 
 enum e_fractalId{
 	Error = -1,
@@ -62,6 +62,7 @@ struct s_fractalInfo
 	double			im_max_start;
 	double			im_min_start;
 	t_equation		fractal_equation;
+	int32_t			max_iterations;
 	t_complex		extra_param_start;
 };
 
@@ -72,15 +73,16 @@ struct s_fractol{
 	int32_t			height;
 	void			*img;
 	char			*data_addr;
-	int				bits_per_pixel;
-	int				size_line;
-	int				endian;
+	int32_t			bpp;
+	int32_t			line_len;
+	int32_t			endian;
 	t_fractalId		fract_id;
 	double			re_max;
 	double			re_min;
 	double			im_max;
 	double			im_min;
 	t_equation		fractal_equation;
+	int32_t			max_iterations;
 	t_complex		extra_param;
 };
 
@@ -95,7 +97,7 @@ void		fractolDraw(t_fractol *fractol);
 
 // Returns integer (colour) depending on the amount of iterations
 // it took to fail the set inclusion rule
-int32_t		generateColour(int32_t iterations);
+int32_t		generateColour(int32_t iterations, int32_t max_iterations);
 
 // Prints error message and exits the program
 void		panic(const char *errstr);
@@ -106,10 +108,12 @@ bool		ft_strequ(const char *str1, const char *str2);
 // ------------------------- EQUATIONS ------------------------- //
 
 // Equation for Mandelbrot set
-int32_t		mandelbrotEq(const t_fractol *fractol, const t_complex *point);
+int32_t		mandelbrotEq(const t_fractol *fractol, t_complex point);
+
+int32_t	mandelbrotEqCool(t_fractol *fractol, double real, double imaginary);
 
 // Equation for Julia set
-int32_t		juliaEq(const t_fractol *fractol, const t_complex *point);
+int32_t		juliaEq(const t_fractol *fractol, t_complex point);
 
 // ---------------------- EVENT  HANDLING ---------------------- //
 

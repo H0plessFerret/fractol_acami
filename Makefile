@@ -6,7 +6,7 @@
 #    By: acami <acami@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/14 15:34:26 by acami             #+#    #+#              #
-#    Updated: 2021/06/15 20:44:34 by acami            ###   ########.fr        #
+#    Updated: 2021/06/15 21:52:12 by acami            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ MMD_F			=	$(SRC_F:.c=.d)
 MMDS			=	$(addprefix $(OBJ_DIR), $(MMD_F))
 
 CC				=	gcc
-CFLAGS			=	-Wall -Wextra -Werror -O3
+CFLAGS			=	-Wall -Wextra -Werror -g -O3
 LIBS			=	-lmlx -lm -lft \
 					-L $(LIBFT_DIR) -L $(MINILIBX_DIR) \
 					-framework OpenGL -framework AppKit

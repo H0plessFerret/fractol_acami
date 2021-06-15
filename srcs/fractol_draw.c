@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 19:25:26 by acami             #+#    #+#             */
-/*   Updated: 2021/06/15 21:02:46 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/15 22:15:27 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 
 static void	putPixel(t_fractol *fractol, int32_t x, int32_t y, int32_t colour)
 {
-	(void)fractol;
-	(void)x;
-	(void)y;
-	(void)colour;
+	char	*dst;
+
+	dst = fractol->data_addr + (y * fractol->line_len + x * (fractol->bpp / 8));
+	*(uint32_t *)dst = colour;
 }
 
 #ifdef MULTITHREAD_ON
@@ -41,7 +41,8 @@ void	fractolDraw(t_fractol *fractol)
 }
 
 #else
-void	fractolDraw(t_fractol *fractol)
+// Norminette forced me to do this :c
+static void	fractolGenerateImage(t_fractol *fractol)
 {
 	int32_t		x_curr;
 	int32_t		y_curr;
@@ -59,14 +60,20 @@ void	fractolDraw(t_fractol *fractol)
 		point.real = fractol->re_min;
 		while (x_curr < fractol->width)
 		{
+			putPixel(fractol, x_curr, y_curr, generateColour(
+					mandelbrotEqCool(fractol, point.real, point.imaginary),
+					fractol->max_iterations));
 			point.real += re_step;
-			putPixel(fractol, x_curr, y_curr,
-				generateColour(fractol->fractal_equation(fractol, &point)));
 			++x_curr;
 		}
 		point.imaginary += im_step;
 		++y_curr;
 	}
+}
+
+void	fractolDraw(t_fractol *fractol)
+{
+	fractolGenerateImage(fractol);
 	mlx_put_image_to_window(fractol->mlx, fractol->window, fractol->img, 0, 0);
 }
 
