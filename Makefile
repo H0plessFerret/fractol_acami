@@ -6,7 +6,7 @@
 #    By: acami <acami@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/14 15:34:26 by acami             #+#    #+#              #
-#    Updated: 2021/06/15 16:15:26 by acami            ###   ########.fr        #
+#    Updated: 2021/06/15 18:59:08 by acami            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ fractol.c \
 fractol_init.c \
 parse_input.c \
 utils.c \
-equations.c
+equations.c \
+handlers.c
 SRCS			=	$(addprefix $(SRC_DIR), $(SRC_F))
 
 OBJ_DIR			=	./objs/

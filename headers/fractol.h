@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 15:25:22 by acami             #+#    #+#             */
-/*   Updated: 2021/06/15 16:12:01 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/15 18:52:52 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ struct s_fractalInfo
 	double			y_max_start;
 	double			y_min_start;
 	t_equation		fractal_equation;
+	t_complex		extra_param_start;
 };
 
 struct s_fractol{
@@ -75,6 +76,7 @@ struct s_fractol{
 	double			y_max;
 	double			y_min;
 	t_equation		fractal_equation;
+	t_complex		extra_param;
 	t_threadInfo	*thread_info;
 };
 
@@ -97,5 +99,33 @@ int32_t		mandelbrotEq(t_fractol *fractol);
 
 // Equation for Julia set
 int32_t		juliaEq(t_fractol *fractol);
+
+// ---------------------- EVENT  HANDLING ---------------------- //
+
+// Closes window (both from ESC and pressing the button on the window)
+int32_t		closeWindow(void);
+
+// Maps key presses to actions
+int32_t		keyPressHandler(int32_t key, t_fractol *fractol);
+
+// Maps button presses to actions
+int32_t		buttonPressHandler(int32_t button, t_fractol *fractol);
+
+// Maps button releases to actions
+int32_t		buttonReleaseHandler(int32_t button, t_fractol *fractol);
+
+// Handles mouse movements
+int32_t		motionHandler(int32_t x, int32_t y, t_fractol *fractol);
+
+// Translates fractal x_shift to the right and y_shift to the left
+int32_t		translateFractal(double x_shift, double y_shift,
+				t_fractol *fractol);
+
+// Zooms in on the point (x, y) with the zoom factor factor
+int32_t		zoomFractal(int32_t x, int32_t y, double factor,
+				t_fractol *fractol);
+
+// Changes parameter for Julia-type of fractals according to the mouse position
+int32_t		changeParam(int32_t x, int32_t y, t_fractol *fractol);
 
 #endif
