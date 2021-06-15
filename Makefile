@@ -6,7 +6,7 @@
 #    By: acami <acami@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/14 15:34:26 by acami             #+#    #+#              #
-#    Updated: 2021/06/15 18:59:08 by acami            ###   ########.fr        #
+#    Updated: 2021/06/15 20:44:34 by acami            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,13 +17,15 @@ LIBFT_DIR		=	./libft/
 HEADERS_DIR		=	./headers/
 
 SRC_DIR			=	./srcs/
-SRC_F			= 	error_handlers.c \
+SRC_F			= 	equations.c \
 fractol.c \
 fractol_init.c \
 parse_input.c \
+error_handlers.c \
+fractol_draw.c \
+handlers.c \
 utils.c \
-equations.c \
-handlers.c
+generate_colour.c
 SRCS			=	$(addprefix $(SRC_DIR), $(SRC_F))
 
 OBJ_DIR			=	./objs/

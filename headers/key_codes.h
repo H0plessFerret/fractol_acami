@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 17:46:37 by acami             #+#    #+#             */
-/*   Updated: 2021/06/15 18:24:12 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/15 19:51:14 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,12 @@
 # define MOTIONNOTIFY	6
 # define DESTROYNOTIFY	17
 
-// Key code defines
-# define M_SCROLL_UP	4
-# define M_SCROLL_DOWN	5
+# ifdef BUILD_LINUX
+// Key code defines for linux
+# else
+// Key code defines for macos (default)
+#  define M_SCROLL_UP	4
+#  define M_SCROLL_DOWN	5
+# endif
 
 #endif
