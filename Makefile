@@ -6,7 +6,7 @@
 #    By: acami <acami@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/14 15:34:26 by acami             #+#    #+#              #
-#    Updated: 2021/06/14 20:26:26 by acami            ###   ########.fr        #
+#    Updated: 2021/06/15 16:15:26 by acami            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,9 @@ SRC_DIR			=	./srcs/
 SRC_F			= 	error_handlers.c \
 fractol.c \
 fractol_init.c \
-parse_input.c
+parse_input.c \
+utils.c \
+equations.c
 SRCS			=	$(addprefix $(SRC_DIR), $(SRC_F))
 
 OBJ_DIR			=	./objs/
@@ -55,14 +57,14 @@ $(NAME) :	 	$(OBJ_DIR) $(OBJS)
 
 all : 			$(NAME)
 
+include $(MMDS)
+
 $(OBJ_DIR) :
 				@mkdir -p $(OBJ_DIR)
 				@echo "$(NAME): $(GREEN)$(OBJ_DIR) was created$(RESET)"
 
 $(OBJ_DIR)%.o :	$(SRC_DIR)%.c		
 				$(CC) $(CFLAGS) -c $(INCLUDES) $< -o $@ -MMD
-
-include $(MMDS)
 
 clean_libs :
 				@echo "$(NAME): $(BLUE) Calling clean in $(LIBFT_DIR) $(RESET)"

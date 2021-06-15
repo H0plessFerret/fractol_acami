@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 14:27:35 by acami             #+#    #+#             */
-/*   Updated: 2021/06/14 20:59:38 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/15 15:50:55 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static t_fractalId	parseName(char *name)
 	count = 0;
 	while (count < FRACTALS_SUPPORTED)
 	{
-		if (ft_strncmp(names[count], name, ft_strlen(names[count])) == 0)
+		if (ft_strequ(names[count], name))
 			return (count);
 		++count;
 	}
@@ -49,7 +49,7 @@ static int32_t	parseParams(char **argv, t_fractol *fractol, int32_t curr_arg)
 {
 	int32_t	param_val;
 
-	if (ft_strncmp(argv[curr_arg], "-W", ft_strlen(argv[curr_arg])) == 0)
+	if (ft_strequ(argv[curr_arg], "-W"))
 	{
 		param_val = ft_atoi(argv[curr_arg + 1]);
 		if (param_val < 1 || param_val > 3840)
@@ -57,7 +57,7 @@ static int32_t	parseParams(char **argv, t_fractol *fractol, int32_t curr_arg)
 		fractol->width = param_val;
 		return (2);
 	}
-	if (ft_strncmp(argv[curr_arg], "-H", ft_strlen(argv[curr_arg])) == 0)
+	if (ft_strequ(argv[curr_arg], "-H"))
 	{
 		param_val = ft_atoi(argv[curr_arg + 1]);
 		if (param_val < 1 || param_val > 2160)

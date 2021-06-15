@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.c                                          :+:      :+:    :+:   */
+/*   equations.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/14 13:47:44 by acami             #+#    #+#             */
-/*   Updated: 2021/06/15 16:16:35 by acami            ###   ########.fr       */
+/*   Created: 2021/06/15 16:14:40 by acami             #+#    #+#             */
+/*   Updated: 2021/06/15 16:15:04 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	main(int argc, char **argv)
+int32_t		mandelbrotEq(t_fractol *fractol)
 {
-	t_fractol	fractol;
+	(void)fractol;
+	return (0);
+}
 
-	fractol.fract_id = parseInput(argc, argv, &fractol);
-	fractolInit(&fractol);
-	/* Hook the keys */
-	/* Draw initial pic */
-	/* Loop hook */
+int32_t		juliaEq(t_fractol *fractol)
+{
+	(void)fractol;
 	return (0);
 }
