@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 17:46:37 by acami             #+#    #+#             */
-/*   Updated: 2021/06/16 17:25:50 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/16 18:53:56 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@
 #  define KEYBOARD_S		1
 #  define KEYBOARD_D		2
 #  define KEYBOARD_W		13
+
+#  define KEYBOARD_R		15
 
 #  define KEYBOARD_LEFT		123
 #  define KEYBOARD_RIGHT	124

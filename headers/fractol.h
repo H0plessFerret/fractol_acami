@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 15:25:22 by acami             #+#    #+#             */
-/*   Updated: 2021/06/16 18:26:00 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/16 18:53:16 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,9 @@ struct s_fractol{
 // Parse arguments of the program call and return the correct fractal_id
 t_fractalId	parseInput(int argc, char **argv, t_fractol *fractol);
 
+// Initializes default values for the fractol function
+void		fractolFunctionInit(t_fractol *fractol);
+
 // Initializes t_fractol struct
 void		fractolInit(t_fractol *fractol);
 
@@ -134,8 +137,8 @@ int32_t		buttonReleaseHandler(int32_t button, t_fractol *fractol);
 // Handles mouse movements
 int32_t		motionHandler(int32_t x, int32_t y, t_fractol *fractol);
 
-// Translates fractal x_shift to the right and y_shift to the left
-int32_t		translateFractal(double x_shift, double y_shift,
+// Translates fractal x_shift to the right and im_shift up
+int32_t		translateFractal(double re_shift, double im_shift,
 				t_fractol *fractol);
 
 // Zooms in on the point (x, y) with the zoom factor factor

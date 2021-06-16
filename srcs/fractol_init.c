@@ -6,29 +6,13 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 17:06:02 by acami             #+#    #+#             */
-/*   Updated: 2021/06/16 17:47:59 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/16 18:59:28 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include "key_codes.h"
 #include <stdio.h>
-
-static void	fractolFunctionInit(t_fractol *fractol)
-{
-	static const t_fractalInfo	fractalInfo[FRACTALS_SUPPORTED] = {
-		[Mandelbrot] = {-2., 1., -1.5, 1.5, mandelbrotEq, 100, {0., 0.}},
-		[Julia] = {-2., 1.5, -1.5, 1.5, juliaEq, 50, {0., 0.}}
-	};
-
-	fractol->re_min = fractalInfo[fractol->fract_id].re_min_start;
-	fractol->re_max = fractalInfo[fractol->fract_id].re_max_start;
-	fractol->im_min = fractalInfo[fractol->fract_id].im_min_start;
-	fractol->im_max = fractalInfo[fractol->fract_id].im_max_start;
-	fractol->fractal_equation = fractalInfo[fractol->fract_id].fractal_equation;
-	fractol->max_iterations = fractalInfo[fractol->fract_id].max_iterations;
-	fractol->extra_param = fractalInfo[fractol->fract_id].extra_param_start;
-}
 
 static void	fractolHooksInit(t_fractol *fractol)
 {
@@ -58,4 +42,20 @@ void	fractolInit(t_fractol *fractol)
 			&(fractol->endian));
 	fractolFunctionInit(fractol);
 	fractolHooksInit(fractol);
+}
+
+void	fractolFunctionInit(t_fractol *fractol)
+{
+	static const t_fractalInfo	fractalInfo[FRACTALS_SUPPORTED] = {
+		[Mandelbrot] = {-2., 1., -1.5, 1.5, mandelbrotEq, 100, {0., 0.}},
+		[Julia] = {-2., 1.5, -1.5, 1.5, juliaEq, 50, {0., 0.}}
+	};
+
+	fractol->re_min = fractalInfo[fractol->fract_id].re_min_start;
+	fractol->re_max = fractalInfo[fractol->fract_id].re_max_start;
+	fractol->im_min = fractalInfo[fractol->fract_id].im_min_start;
+	fractol->im_max = fractalInfo[fractol->fract_id].im_max_start;
+	fractol->fractal_equation = fractalInfo[fractol->fract_id].fractal_equation;
+	fractol->max_iterations = fractalInfo[fractol->fract_id].max_iterations;
+	fractol->extra_param = fractalInfo[fractol->fract_id].extra_param_start;
 }

@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 18:55:00 by acami             #+#    #+#             */
-/*   Updated: 2021/06/16 18:30:36 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/16 19:00:18 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,28 @@
 #include "key_codes.h"
 #include <stdio.h>
 
-int32_t	closeWindow(void)
-{
-	printf("closeWindow was called!\n");
-	exit(0);
-}
-
+// Need to find a way to get rid of this ugly if else mountain :c
 int32_t	keyPressHandler(int32_t key, t_fractol *fractol)
 {
-	(void)fractol;
-	printf("keyPressHandler was called!\n");
-	printf("key code: %d\n", key);
+	if (key == KEYBOARD_ESC)
+		closeWindow();
+	if (key == KEYBOARD_A)
+		translateFractal(-(fractol->re_max - fractol->re_min) / 32., 0.,
+			fractol);
+	else if (key == KEYBOARD_S)
+		translateFractal(0., -(fractol->im_max - fractol->im_min) / 32.,
+			fractol);
+	else if (key == KEYBOARD_D)
+		translateFractal((fractol->re_max - fractol->re_min) / 32., 0.,
+			fractol);
+	else if (key == KEYBOARD_W)
+		translateFractal(0., (fractol->im_max - fractol->im_min) / 32.,
+			fractol);
+	else if (key == KEYBOARD_R)
+	{
+		fractolFunctionInit(fractol);
+		fractolDraw(fractol);
+	}	
 	return (0);
 }
 

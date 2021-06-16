@@ -6,7 +6,7 @@
 #    By: acami <acami@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/14 15:34:26 by acami             #+#    #+#              #
-#    Updated: 2021/06/16 16:06:53 by acami            ###   ########.fr        #
+#    Updated: 2021/06/16 18:58:02 by acami            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ error_handlers.c \
 fractol_draw.c \
 handlers.c \
 utils.c \
-generate_colour.c
+generate_colour.c \
+actions.c
 SRCS			=	$(addprefix $(SRC_DIR), $(SRC_F))
 
 OBJ_DIR			=	./objs/
