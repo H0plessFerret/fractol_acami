@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 15:25:22 by acami             #+#    #+#             */
-/*   Updated: 2021/06/16 18:53:16 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/16 19:16:41 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ struct s_fractol{
 	t_equation		fractal_equation;
 	int32_t			max_iterations;
 	t_complex		extra_param;
+	bool			lmb_pressed;
 };
 
 // Parse arguments of the program call and return the correct fractal_id

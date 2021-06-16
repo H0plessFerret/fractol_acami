@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 17:06:02 by acami             #+#    #+#             */
-/*   Updated: 2021/06/16 18:59:28 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/16 19:18:51 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	fractolInit(t_fractol *fractol)
 	fractol->data_addr = mlx_get_data_addr(fractol->img,
 			&(fractol->bpp), &(fractol->line_len),
 			&(fractol->endian));
+	fractol->lmb_pressed = false;
 	fractolFunctionInit(fractol);
 	fractolHooksInit(fractol);
 }

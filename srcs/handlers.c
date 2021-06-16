@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 18:55:00 by acami             #+#    #+#             */
-/*   Updated: 2021/06/16 19:00:18 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/16 19:22:16 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,15 @@ int32_t	keyPressHandler(int32_t key, t_fractol *fractol)
 	{
 		fractolFunctionInit(fractol);
 		fractolDraw(fractol);
-	}	
+	}
 	return (0);
 }
 
 int32_t	buttonPressHandler(int32_t button, t_fractol *fractol)
 {
+	/* This crashes the app. Why?
+	if (button == M_LMB)
+		fractol->lmb_pressed = true; */
 	(void)fractol;
 	printf("buttonPressHandler was called!\n");
 	printf("button code: %d\n", button);
@@ -49,6 +52,9 @@ int32_t	buttonPressHandler(int32_t button, t_fractol *fractol)
 
 int32_t	buttonReleaseHandler(int32_t button, t_fractol *fractol)
 {
+	/* This crashes the app. Why?
+	if (button == M_LMB)
+		fractol->lmb_pressed = false; */
 	(void)fractol;
 	printf("buttonReleaseHandler was called!\n");
 	printf("button code: %d\n", button);
@@ -57,8 +63,10 @@ int32_t	buttonReleaseHandler(int32_t button, t_fractol *fractol)
 
 int32_t	motionHandler(int32_t x, int32_t y, t_fractol *fractol)
 {
-	(void)fractol;
-	printf("motionHandler was called!\n");
-	printf("x: %d, y: %d\n", x, y);
+	if (fractol->lmb_pressed)
+	{
+		(void)y;
+		printf("%lf\n", x * (fractol->re_max - fractol->re_min) / fractol->width);
+	}
 	return (0);
 }
