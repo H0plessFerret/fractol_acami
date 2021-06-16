@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 15:24:37 by acami             #+#    #+#             */
-/*   Updated: 2021/06/15 15:47:54 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/16 12:17:01 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,10 @@ bool	ft_strequ(const char *str1, const char *str2)
 	if (str1[count] != str2[count])
 		return (false);
 	return (true);
+}
+
+void	setComplex(t_complex *number, double new_re, double new_im)
+{
+	number->real = new_re;
+	number->imaginary = new_im;
 }

@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 15:25:22 by acami             #+#    #+#             */
-/*   Updated: 2021/06/15 22:35:28 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/16 12:09:52 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,9 @@ void		panic(const char *errstr);
 
 // Returns true if strings are equal and false if they are not
 bool		ft_strequ(const char *str1, const char *str2);
+
+// Sets new values for a complex number
+void		setComplex(t_complex *number, double new_re, double new_im);
 
 // ------------------------- EQUATIONS ------------------------- //
 

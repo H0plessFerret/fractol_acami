@@ -6,28 +6,27 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 16:14:40 by acami             #+#    #+#             */
-/*   Updated: 2021/06/15 22:41:55 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/16 12:16:40 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <math.h>
 #include "fractol.h"
 
-int32_t	mandelbrotEq(const t_fractol *fractol, t_complex point)
+int32_t	mandelbrotEq(const t_fractol *fractol, t_complex start)
 {
 	int32_t		iteration;
-	double		re;
-	double		im;
-	t_complex	start;
+	t_complex	curr;
 
 	iteration = 0;
-	start.real = point.real;
-	start.imaginary = point.imaginary;
-	while ((iteration < fractol->max_iterations) && (point.real * point.real + point.imaginary * point.imaginary <= 4.))
+	curr.real = 0.;
+	curr.imaginary = 0.;
+	while (iteration < fractol->max_iterations
+		&& pow(curr.real, 2.) + pow(curr.imaginary, 2.) <= 4.)
 	{
-		re = point.real;
-		im = point.imaginary;
-		point.real = re * re - im * im + start.real;
-		point.imaginary = 2. * re * im + start.imaginary;
+		setComplex(&curr,
+			pow(curr.real, 2.) - pow(curr.imaginary, 2.) + start.real,
+			2. * curr.real * curr.imaginary + start.imaginary);
 		++iteration;
 	}
 	return (iteration);

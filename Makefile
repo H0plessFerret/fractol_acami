@@ -6,7 +6,7 @@
 #    By: acami <acami@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/14 15:34:26 by acami             #+#    #+#              #
-#    Updated: 2021/06/15 22:45:12 by acami            ###   ########.fr        #
+#    Updated: 2021/06/16 13:20:10 by acami            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ OBJ_F			=	$(SRC_F:.c=.o)
 OBJS			=	$(addprefix $(OBJ_DIR), $(OBJ_F))
 
 CC				=	gcc
-CFLAGS			=	-Wall -Wextra -Werror -O3
+CFLAGS			=	-Wall -Wextra -Werror -g
 LIBS			=	-lmlx -lm -lft \
 					-L $(LIBFT_DIR) -L $(MINILIBX_DIR) \
 					-framework OpenGL -framework AppKit
