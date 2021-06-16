@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 15:25:22 by acami             #+#    #+#             */
-/*   Updated: 2021/06/16 19:16:41 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/16 20:00:42 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,10 +130,12 @@ int32_t		closeWindow(void);
 int32_t		keyPressHandler(int32_t key, t_fractol *fractol);
 
 // Maps button presses to actions
-int32_t		buttonPressHandler(int32_t button, t_fractol *fractol);
+int32_t		buttonPressHandler(int32_t button, int x, int y,
+				t_fractol *fractol);
 
 // Maps button releases to actions
-int32_t		buttonReleaseHandler(int32_t button, t_fractol *fractol);
+int32_t		buttonReleaseHandler(int32_t button, int x, int y,
+				t_fractol *fractol);
 
 // Handles mouse movements
 int32_t		motionHandler(int32_t x, int32_t y, t_fractol *fractol);
