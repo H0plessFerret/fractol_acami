@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 17:46:37 by acami             #+#    #+#             */
-/*   Updated: 2021/06/15 19:51:14 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/16 17:25:50 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,25 @@
 // Key code defines for linux
 # else
 // Key code defines for macos (default)
-#  define M_SCROLL_UP	4
-#  define M_SCROLL_DOWN	5
+#  define MAX_KEYBOARD_CODE	127
+
+#  define M_LMB				1
+#  define M_RMB				2
+#  define M_SCROLL_UP		4
+#  define M_SCROLL_DOWN		5
+
+#  define KEYBOARD_ESC		53
+
+#  define KEYBOARD_A		0
+#  define KEYBOARD_S		1
+#  define KEYBOARD_D		2
+#  define KEYBOARD_W		13
+
+#  define KEYBOARD_LEFT		123
+#  define KEYBOARD_RIGHT	124
+#  define KEYBOARD_DOWN		125
+#  define KEYBOARD_UP		126
+
 # endif
 
 #endif

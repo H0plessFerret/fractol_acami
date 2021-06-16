@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 15:25:22 by acami             #+#    #+#             */
-/*   Updated: 2021/06/16 12:09:52 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/16 18:26:00 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,9 @@ typedef struct s_threadInfo		t_threadInfo;
 typedef struct s_complex		t_complex;
 typedef struct s_fractol		t_fractol;
 typedef struct s_fractalInfo	t_fractalInfo;
-typedef int						(*t_equation)(const t_fractol *fractol,
+typedef int32_t					(*t_equation)(const t_fractol *fractol,
 								t_complex point);
+typedef int32_t					(*t_eventFunction)();
 
 enum e_fractalId{
 	Error = -1,

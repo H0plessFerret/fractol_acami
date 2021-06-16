@@ -6,11 +6,12 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 18:55:00 by acami             #+#    #+#             */
-/*   Updated: 2021/06/15 18:59:02 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/16 18:30:36 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+#include "key_codes.h"
 #include <stdio.h>
 
 int32_t	closeWindow(void)
