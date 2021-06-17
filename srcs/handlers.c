@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 18:55:00 by acami             #+#    #+#             */
-/*   Updated: 2021/06/17 17:45:18 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/17 17:51:14 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,6 @@ int32_t	buttonReleaseHandler(int32_t button, int x, int y, t_fractol *fractol)
 
 int32_t	motionHandler(int32_t x, int32_t y, t_fractol *fractol)
 {
-	printf("%lf %lf\n", (double)x * (fractol->re_max - fractol->re_min) / fractol->width
-			+ fractol->re_min,
-			(double)y * -1. * (fractol->im_max - fractol->im_min)
-			/ fractol->height + fractol->im_max);
 	if (fractol->lmb_pressed)
 	{
 		setComplex(&(fractol->extra_param),
