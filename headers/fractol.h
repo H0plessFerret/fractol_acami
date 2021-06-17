@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 15:25:22 by acami             #+#    #+#             */
-/*   Updated: 2021/06/16 20:00:42 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/17 16:38:32 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 # define FRACTOL_H
 
 # define FRACTALS_SUPPORTED	2
-# define WIN_WIDTH			1920
-# define WIN_HEIGHT			1080
+# define WIN_WIDTH			1200
+# define WIN_HEIGHT			1200
+//# define WIN_WIDTH			1920
+//# define WIN_HEIGHT			1080
 # define THREADS			8
 
 # include <stdlib.h>

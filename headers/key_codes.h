@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 17:46:37 by acami             #+#    #+#             */
-/*   Updated: 2021/06/16 18:53:56 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/17 17:14:42 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@
 // Key code defines for linux
 # else
 // Key code defines for macos (default)
-#  define MAX_KEYBOARD_CODE	127
-
 #  define M_LMB				1
 #  define M_RMB				2
 #  define M_SCROLL_UP		4

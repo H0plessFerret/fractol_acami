@@ -6,13 +6,12 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 17:06:02 by acami             #+#    #+#             */
-/*   Updated: 2021/06/16 19:18:51 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/17 17:41:20 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include "key_codes.h"
-#include <stdio.h>
 
 static void	fractolHooksInit(t_fractol *fractol)
 {
