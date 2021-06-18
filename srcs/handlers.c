@@ -6,13 +6,12 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 18:55:00 by acami             #+#    #+#             */
-/*   Updated: 2021/06/18 13:24:25 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/18 13:39:40 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include "key_codes.h"
-#include <stdio.h>
 
 // Need to find a way to get rid of this ugly if else mountain :c
 int32_t	keyPressHandler(int32_t key, t_fractol *fractol)
@@ -50,7 +49,6 @@ int32_t	buttonPressHandler(int32_t button, int x, int y, t_fractol *fractol)
 			+ fractol->re_min,
 			(double)y * -1. * (fractol->im_max - fractol->im_min)
 			/ fractol->height + fractol->im_max);
-		printf("%lf %lf\n", fractol->extra_param.real, fractol->extra_param.imaginary);
 		fractolDraw(fractol);
 	}
 	else if (button == M_SCROLL_UP)
