@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 17:06:02 by acami             #+#    #+#             */
-/*   Updated: 2021/06/18 17:29:40 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/18 18:17:37 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,17 @@ void	fractolInit(t_fractol *fractol)
 
 void	fractolFunctionInit(t_fractol *fractol)
 {
-	static const t_fractalInfo	fractalInfo[FRACTALS_SUPPORTED] = {
-		[Mandelbrot] = {-2., 1., -1.5, 1.5, mandelbrotEq, 50, {0., 0.}},
-		[Julia] = {-2., 2., -2., 2., juliaEq, 50, {-0.89, -0.235000}}
+	static const t_fractalInfo	frac_info[FRACTALS_SUPPORTED] = {
+		[Mandelbrot] = {-2., 1., -1.5, 1.5, mandelbrotEq, 50, 7, {0., 0.}},
+		[Julia] = {-2., 2., -2., 2., juliaEq, 50, 6, {-0.89, -0.235000}}
 	};
 
-	fractol->re_min = fractalInfo[fractol->fract_id].re_min_start;
-	fractol->re_max = fractalInfo[fractol->fract_id].re_max_start;
-	fractol->im_min = fractalInfo[fractol->fract_id].im_min_start;
-	fractol->im_max = fractalInfo[fractol->fract_id].im_max_start;
-	fractol->fractal_equation = fractalInfo[fractol->fract_id].fractal_equation;
-	fractol->max_iterations = fractalInfo[fractol->fract_id].max_iterations;
-	fractol->extra_param = fractalInfo[fractol->fract_id].extra_param_start;
+	fractol->re_min = frac_info[fractol->fract_id].re_min_start;
+	fractol->re_max = frac_info[fractol->fract_id].re_max_start;
+	fractol->im_min = frac_info[fractol->fract_id].im_min_start;
+	fractol->im_max = frac_info[fractol->fract_id].im_max_start;
+	fractol->fractal_equation = frac_info[fractol->fract_id].fractal_equation;
+	fractol->max_iterations = frac_info[fractol->fract_id].max_iterations;
+	fractol->iteration_change = frac_info[fractol->fract_id].iteration_change;
+	fractol->extra_param = frac_info[fractol->fract_id].extra_param_start;
 }

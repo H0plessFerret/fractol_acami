@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 15:25:22 by acami             #+#    #+#             */
-/*   Updated: 2021/06/18 18:09:01 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/18 18:15:46 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # define FRACTALS_SUPPORTED	2
 # define WIN_WIDTH			1200
 # define WIN_HEIGHT			1200
-# define ITERATION_GROW		6
 
 // On school iMacs CPU is Core i5-7500, max threads here is 16
 # define THREADS			16
@@ -70,6 +69,7 @@ struct s_fractalInfo
 	double			im_max_start;
 	t_equation		fractal_equation;
 	int32_t			max_iterations;
+	int32_t			iteration_change;
 	t_complex		extra_param_start;
 };
 
@@ -90,6 +90,7 @@ struct s_fractol{
 	double			im_min;
 	t_equation		fractal_equation;
 	int32_t			max_iterations;
+	int32_t			iteration_change;
 	t_complex		extra_param;
 	bool			lmb_pressed;
 };

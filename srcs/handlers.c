@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 18:55:00 by acami             #+#    #+#             */
-/*   Updated: 2021/06/18 18:07:07 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/18 18:18:11 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,12 @@ int32_t	buttonPressHandler(int32_t button, int x, int y, t_fractol *fractol)
 	}
 	else if (button == M_SCROLL_UP)
 	{
-		fractol->max_iterations -= ITERATION_GROW;
+		fractol->max_iterations -= fractol->iteration_change;
 		zoomFractal(x, y, 0.8, fractol);
 	}
 	else if (button == M_SCROLL_DOWN)
 	{
-		fractol->max_iterations += ITERATION_GROW;
+		fractol->max_iterations += fractol->iteration_change;
 		zoomFractal(x, y, 1.2, fractol);
 	}
 	return (0);
