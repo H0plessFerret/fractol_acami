@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 15:25:22 by acami             #+#    #+#             */
-/*   Updated: 2021/06/17 16:38:32 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/18 13:26:56 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,9 +118,11 @@ void		setComplex(t_complex *number, double new_re, double new_im);
 // ------------------------- EQUATIONS ------------------------- //
 
 // Equation for Mandelbrot set
+// eq: zˆ2 + point;
 int32_t		mandelbrotEq(const t_fractol *fractol, t_complex point);
 
 // Equation for Julia set
+// eq: extra_paramˆ2 + point
 int32_t		juliaEq(const t_fractol *fractol, t_complex point);
 
 // ---------------------- EVENT  HANDLING ---------------------- //
