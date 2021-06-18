@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 17:06:02 by acami             #+#    #+#             */
-/*   Updated: 2021/06/17 17:41:20 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/18 12:36:23 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	fractolInit(t_fractol *fractol)
 void	fractolFunctionInit(t_fractol *fractol)
 {
 	static const t_fractalInfo	fractalInfo[FRACTALS_SUPPORTED] = {
-		[Mandelbrot] = {-2., 1., -1.5, 1.5, mandelbrotEq, 100, {0., 0.}},
+		[Mandelbrot] = {-2., 1., -1.5, 1.5, mandelbrotEq, 50, {0., 0.}},
 		[Julia] = {-2., 1.5, -1.5, 1.5, juliaEq, 50, {0., 0.}}
 	};
 
