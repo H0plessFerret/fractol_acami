@@ -6,13 +6,14 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 19:25:26 by acami             #+#    #+#             */
-/*   Updated: 2021/06/15 22:35:16 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/18 17:47:30 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
 #ifdef MULTITHREAD_ON
+# include <error_messages.h>
 # include <pthread.h>
 #endif
 
@@ -25,33 +26,80 @@ static void	putPixel(t_fractol *fractol, int32_t x, int32_t y, int32_t colour)
 }
 
 #ifdef MULTITHREAD_ON
-
-static void	fractolDrawStrip(t_fractol *fractol, t_threadInfo *threadInfo)
+static void	iterateOverStrip(t_threadInfo *thread_info, t_fractol *fractol,
+t_complex *step, t_complex *point)
 {
-	(void)fractol;
-	(void)threadInfo;
+	int32_t		x_curr;
+	int32_t		y_curr;
+
+	y_curr = thread_info->start_line;
+	while (y_curr < thread_info->end_line)
+	{
+		x_curr = 0;
+		point->real = fractol->re_min;
+		while (x_curr < fractol->width)
+		{
+			putPixel(fractol, x_curr, y_curr, generateColour(
+					fractol->fractal_equation(fractol, *point),
+					fractol->max_iterations));
+			point->real += step->real;
+			++x_curr;
+		}
+		point->imaginary += step->imaginary;
+		++y_curr;
+	}
+}
+
+static void	fractolDrawStrip(t_threadInfo *thread_info)
+{
+	t_complex	step;
+	t_fractol	*fractol;
+	t_complex	point;
+
+	fractol = thread_info->fractol;
+	point.imaginary = -1. *thread_info->start_line * (fractol->im_max
+			- fractol->im_min) / fractol->height + fractol->im_max;
+	step.real = (fractol->re_max - fractol->re_min) / fractol->width;
+	step.imaginary = (fractol->im_min - fractol->im_max) / fractol->height;
+	iterateOverStrip(thread_info, fractol, &step, &point);
 }
 
 void	fractolDraw(t_fractol *fractol)
 {
-	t_threadInfo	threadInfo[THREADS];
+	t_threadInfo	thread_info[THREADS];
+	int32_t			count;
 
-	(void)fractol;
-	(void)threadInfo;
+	count = 0;
+	while (count < THREADS)
+	{
+		thread_info[count].fractol = fractol;
+		thread_info[count].start_line = count * (fractol->height / THREADS);
+		thread_info[count].end_line = (count + 1) * (fractol->height / THREADS);
+		if (pthread_create(&(thread_info[count].thread), NULL,
+				(void *(*)(void *))fractolDrawStrip,
+			(void *)(thread_info + count)) != 0)
+			panic(THREAD_CREATE_ERROR);
+		++count;
+	}
+	while (count > 0)
+	{
+		--count;
+		if (pthread_join(thread_info[count].thread, NULL))
+			panic(THREAD_JOIN_ERROR);
+	}
+	mlx_put_image_to_window(fractol->mlx, fractol->window, fractol->img, 0, 0);
 }
 
 #else
-// Norminette forced me to do this :c
-static void	fractolGenerateImage(t_fractol *fractol)
+void	fractolDraw(t_fractol *fractol)
 {
 	int32_t		x_curr;
 	int32_t		y_curr;
-	double		re_step;
-	double		im_step;
+	t_complex	step;
 	t_complex	point;
 
-	re_step = (fractol->re_max - fractol->re_min) / fractol->width;
-	im_step = (fractol->im_min - fractol->im_max) / fractol->height;
+	step.real = (fractol->re_max - fractol->re_min) / fractol->width;
+	step.imaginary = (fractol->im_min - fractol->im_max) / fractol->height;
 	point.imaginary = fractol->im_max;
 	y_curr = 0;
 	while (y_curr < fractol->height)
@@ -63,17 +111,12 @@ static void	fractolGenerateImage(t_fractol *fractol)
 			putPixel(fractol, x_curr, y_curr, generateColour(
 					fractol->fractal_equation(fractol, point),
 					fractol->max_iterations));
-			point.real += re_step;
+			point.real += step.real;
 			++x_curr;
 		}
-		point.imaginary += im_step;
+		point.imaginary += step.imaginary;
 		++y_curr;
 	}
-}
-
-void	fractolDraw(t_fractol *fractol)
-{
-	fractolGenerateImage(fractol);
 	mlx_put_image_to_window(fractol->mlx, fractol->window, fractol->img, 0, 0);
 }
 

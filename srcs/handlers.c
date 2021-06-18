@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 18:55:00 by acami             #+#    #+#             */
-/*   Updated: 2021/06/18 13:39:40 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/18 18:07:07 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,18 @@ int32_t	keyPressHandler(int32_t key, t_fractol *fractol)
 		fractolFunctionInit(fractol);
 		fractolDraw(fractol);
 	}
+	else if (key == KEYBOARD_PLUS)
+	{
+		fractol->max_iterations = fractol->max_iterations * 14 / 10;
+		printf("Max iterations: %d\n", fractol->max_iterations);
+		fractolDraw(fractol);
+	}
+	else if (key == KEYBOARD_MINUS)
+	{
+		fractol->max_iterations = fractol->max_iterations * 10 / 14;
+		printf("Max iterations: %d\n", fractol->max_iterations);
+		fractolDraw(fractol);
+	}
 	return (0);
 }
 
@@ -52,9 +64,15 @@ int32_t	buttonPressHandler(int32_t button, int x, int y, t_fractol *fractol)
 		fractolDraw(fractol);
 	}
 	else if (button == M_SCROLL_UP)
+	{
+		fractol->max_iterations -= ITERATION_GROW;
 		zoomFractal(x, y, 0.8, fractol);
+	}
 	else if (button == M_SCROLL_DOWN)
+	{
+		fractol->max_iterations += ITERATION_GROW;
 		zoomFractal(x, y, 1.2, fractol);
+	}
 	return (0);
 }
 

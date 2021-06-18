@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 17:46:37 by acami             #+#    #+#             */
-/*   Updated: 2021/06/17 17:14:42 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/18 15:52:56 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define MOTIONNOTIFY	6
 # define DESTROYNOTIFY	17
 
-# ifdef BUILD_LINUX
+# ifdef LINUX_BUILD
 // Key code defines for linux
 # else
 // Key code defines for macos (default)
@@ -45,6 +45,9 @@
 #  define KEYBOARD_RIGHT	124
 #  define KEYBOARD_DOWN		125
 #  define KEYBOARD_UP		126
+
+#  define KEYBOARD_MINUS	27
+#  define KEYBOARD_PLUS		24
 
 # endif
 

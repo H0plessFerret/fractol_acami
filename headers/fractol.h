@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 15:25:22 by acami             #+#    #+#             */
-/*   Updated: 2021/06/18 13:26:56 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/18 18:09:01 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@
 # define FRACTALS_SUPPORTED	2
 # define WIN_WIDTH			1200
 # define WIN_HEIGHT			1200
-//# define WIN_WIDTH			1920
-//# define WIN_HEIGHT			1080
-# define THREADS			8
+# define ITERATION_GROW		6
+
+// On school iMacs CPU is Core i5-7500, max threads here is 16
+# define THREADS			16
 
 # include <stdlib.h>
 # include <unistd.h>
@@ -27,6 +28,8 @@
 # include <pthread.h>
 # include "mlx.h"
 # include "error_messages.h"
+
+#include <stdio.h>
 
 typedef enum e_fractalId		t_fractalId;
 typedef struct s_threadInfo		t_threadInfo;
@@ -50,6 +53,7 @@ struct s_threadInfo
 	pthread_t	thread;
 	int32_t		start_line;
 	int32_t		end_line;
+	t_fractol	*fractol;
 };
 
 struct	s_complex
