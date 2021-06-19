@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 14:27:35 by acami             #+#    #+#             */
-/*   Updated: 2021/06/15 15:50:55 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/19 16:59:34 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static void	xShowHelp(char *bad_param)
 	ft_putendl_fd("Fractals supported:", 1);
 	ft_putendl_fd(" --- Mandelbrot", 1);
 	ft_putendl_fd(" --- Julia", 1);
+	ft_putendl_fd(" --- Burning Ship", 1);
 	exit(EXIT_FAILURE);
 }
 
@@ -32,7 +33,8 @@ static t_fractalId	parseName(char *name)
 	int					count;
 	static const char	*names[FRACTALS_SUPPORTED] = {
 		[Mandelbrot] = "Mandelbrot",
-		[Julia] = "Julia"
+		[Julia] = "Julia",
+		[BurningShip] = "Burning Ship"
 	};
 
 	count = 0;

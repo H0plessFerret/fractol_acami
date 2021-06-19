@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 19:25:26 by acami             #+#    #+#             */
-/*   Updated: 2021/06/18 17:47:30 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/19 16:00:25 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_complex *step, t_complex *point)
 		{
 			putPixel(fractol, x_curr, y_curr, generateColour(
 					fractol->fractal_equation(fractol, *point),
-					fractol->max_iterations));
+					fractol->max_iterations, fractol->colour_scheme));
 			point->real += step->real;
 			++x_curr;
 		}
@@ -110,7 +110,7 @@ void	fractolDraw(t_fractol *fractol)
 		{
 			putPixel(fractol, x_curr, y_curr, generateColour(
 					fractol->fractal_equation(fractol, point),
-					fractol->max_iterations));
+					fractol->max_iterations, fractol->colour_scheme));
 			point.real += step.real;
 			++x_curr;
 		}

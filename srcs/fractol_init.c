@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 17:06:02 by acami             #+#    #+#             */
-/*   Updated: 2021/06/18 18:17:37 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/19 17:13:59 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static void	fractolHooksInit(t_fractol *fractol)
 {
-	mlx_hook(fractol->window, DESTROYNOTIFY, NOEVENTMASK, closeWindow, fractol);
+	mlx_hook(fractol->window, DESTROYNOTIFY, NOEVENTMASK, closeWindow, NULL);
 	mlx_hook(fractol->window, KEYPRESS, NOEVENTMASK, keyPressHandler, fractol);
 	mlx_hook(fractol->window, BUTTONPRESS, NOEVENTMASK, buttonPressHandler,
 		fractol);
@@ -47,16 +47,23 @@ void	fractolInit(t_fractol *fractol)
 void	fractolFunctionInit(t_fractol *fractol)
 {
 	static const t_fractalInfo	frac_info[FRACTALS_SUPPORTED] = {
-		[Mandelbrot] = {-2., 1., -1.5, 1.5, mandelbrotEq, 50, 7, {0., 0.}},
-		[Julia] = {-2., 2., -2., 2., juliaEq, 50, 6, {-0.89, -0.235000}}
+		[Mandelbrot] = {-2., 1., -1.5, 1.5, mandelbrotEq, 50, 7, {0., 0.},
+			DefaultBlue},
+		[Julia] = {-2., 2., -2., 2., juliaEq, 50, 6, {-0.89, -0.235000},
+			DefaultBlue},
+		[BurningShip] = {-2., 1., -1., 2, burningShipEq, 50, 7, {0., 0.},
+			DefaultBlue}
 	};
+	t_fractalId					curr_id;
 
-	fractol->re_min = frac_info[fractol->fract_id].re_min_start;
-	fractol->re_max = frac_info[fractol->fract_id].re_max_start;
-	fractol->im_min = frac_info[fractol->fract_id].im_min_start;
-	fractol->im_max = frac_info[fractol->fract_id].im_max_start;
-	fractol->fractal_equation = frac_info[fractol->fract_id].fractal_equation;
-	fractol->max_iterations = frac_info[fractol->fract_id].max_iterations;
-	fractol->iteration_change = frac_info[fractol->fract_id].iteration_change;
-	fractol->extra_param = frac_info[fractol->fract_id].extra_param_start;
+	curr_id = (fractol->fract_id) & FRACTALS_SUPPORTED;
+	fractol->re_min = frac_info[curr_id].re_min_start;
+	fractol->re_max = frac_info[curr_id].re_max_start;
+	fractol->im_min = frac_info[curr_id].im_min_start;
+	fractol->im_max = frac_info[curr_id].im_max_start;
+	fractol->fractal_equation = frac_info[curr_id].fractal_equation;
+	fractol->max_iterations = frac_info[curr_id].max_iterations_start;
+	fractol->iteration_change = frac_info[curr_id].iteration_change;
+	fractol->extra_param = frac_info[curr_id].extra_param_start;
+	fractol->colour_scheme = frac_info[curr_id].colour_scheme_start;
 }

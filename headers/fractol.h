@@ -6,19 +6,20 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 15:25:22 by acami             #+#    #+#             */
-/*   Updated: 2021/06/18 18:15:46 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/19 17:05:24 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# define FRACTALS_SUPPORTED	2
+# define FRACTALS_SUPPORTED	3
 # define WIN_WIDTH			1200
 # define WIN_HEIGHT			1200
 
 // On school iMacs CPU is Core i5-7500, max threads here is 16
 # define THREADS			16
+# define COLOUR_FUNCS		3
 
 # include <stdlib.h>
 # include <unistd.h>
@@ -31,18 +32,30 @@
 #include <stdio.h>
 
 typedef enum e_fractalId		t_fractalId;
+typedef enum e_colourScheme		t_colourScheme;
 typedef struct s_threadInfo		t_threadInfo;
 typedef struct s_complex		t_complex;
 typedef struct s_fractol		t_fractol;
 typedef struct s_fractalInfo	t_fractalInfo;
 typedef int32_t					(*t_equation)(const t_fractol *fractol,
 								t_complex point);
-typedef int32_t					(*t_eventFunction)();
+typedef int32_t					(*t_colourFunc)(int32_t iterations,
+								int32_t max_iterations);
+typedef int32_t					(*t_handerAction)();
 
-enum e_fractalId{
+enum e_fractalId
+{
 	Error = -1,
 	Mandelbrot,
-	Julia
+	Julia,
+	BurningShip
+};
+
+enum e_colourScheme
+{
+	DefaultBlue = 0,
+	DefaultGreen,
+	DefaultRed
 };
 
 // Fill later, when will be working on multi-threading
@@ -55,7 +68,7 @@ struct s_threadInfo
 	t_fractol	*fractol;
 };
 
-struct	s_complex
+struct s_complex
 {
 	double	real;
 	double	imaginary;
@@ -68,9 +81,10 @@ struct s_fractalInfo
 	double			im_min_start;
 	double			im_max_start;
 	t_equation		fractal_equation;
-	int32_t			max_iterations;
+	int32_t			max_iterations_start;
 	int32_t			iteration_change;
 	t_complex		extra_param_start;
+	t_colourScheme	colour_scheme_start;
 };
 
 struct s_fractol{
@@ -92,6 +106,7 @@ struct s_fractol{
 	int32_t			max_iterations;
 	int32_t			iteration_change;
 	t_complex		extra_param;
+	t_colourScheme	colour_scheme;
 	bool			lmb_pressed;
 };
 
@@ -109,7 +124,8 @@ void		fractolDraw(t_fractol *fractol);
 
 // Returns integer (colour) depending on the amount of iterations
 // it took to fail the set inclusion rule
-int32_t		generateColour(int32_t iterations, int32_t max_iterations);
+int32_t		generateColour(int32_t iterations, int32_t max_iterations,
+				t_colourScheme colour_scheme);
 
 // Prints error message and exits the program
 void		panic(const char *errstr);
@@ -129,6 +145,8 @@ int32_t		mandelbrotEq(const t_fractol *fractol, t_complex point);
 // Equation for Julia set
 // eq: extra_paramˆ2 + point
 int32_t		juliaEq(const t_fractol *fractol, t_complex point);
+
+int32_t		burningShipEq(const t_fractol *fractol, t_complex point);
 
 // ---------------------- EVENT  HANDLING ---------------------- //
 
