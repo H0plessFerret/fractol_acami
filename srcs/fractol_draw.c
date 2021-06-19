@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 19:25:26 by acami             #+#    #+#             */
-/*   Updated: 2021/06/19 16:00:25 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/19 20:11:49 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ t_complex *step, t_complex *point)
 		{
 			putPixel(fractol, x_curr, y_curr, generateColour(
 					fractol->fractal_equation(fractol, *point),
-					fractol->max_iterations, fractol->colour_scheme));
+					fractol->max_iterations, fractol->colour_scheme,
+					thread_info->random_factor));
 			point->real += step->real;
 			++x_curr;
 		}
@@ -68,11 +69,16 @@ void	fractolDraw(t_fractol *fractol)
 {
 	t_threadInfo	thread_info[THREADS];
 	int32_t			count;
+	int32_t			rand_param;
+	time_t			t;
 
+	srand((unsigned)time(&t));
+	rand_param = rand();
 	count = 0;
 	while (count < THREADS)
 	{
 		thread_info[count].fractol = fractol;
+		thread_info[count].random_factor = rand_param;
 		thread_info[count].start_line = count * (fractol->height / THREADS);
 		thread_info[count].end_line = (count + 1) * (fractol->height / THREADS);
 		if (pthread_create(&(thread_info[count].thread), NULL,
@@ -110,7 +116,7 @@ void	fractolDraw(t_fractol *fractol)
 		{
 			putPixel(fractol, x_curr, y_curr, generateColour(
 					fractol->fractal_equation(fractol, point),
-					fractol->max_iterations, fractol->colour_scheme));
+					fractol->max_iterations, fractol->colour_scheme, 12345));
 			point.real += step.real;
 			++x_curr;
 		}

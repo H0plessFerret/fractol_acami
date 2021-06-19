@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 15:25:22 by acami             #+#    #+#             */
-/*   Updated: 2021/06/19 17:05:24 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/19 19:55:55 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 // On school iMacs CPU is Core i5-7500, max threads here is 16
 # define THREADS			16
-# define COLOUR_FUNCS		3
+# define COLOURS_SUPPORTED	4
 
 # include <stdlib.h>
 # include <unistd.h>
@@ -40,7 +40,7 @@ typedef struct s_fractalInfo	t_fractalInfo;
 typedef int32_t					(*t_equation)(const t_fractol *fractol,
 								t_complex point);
 typedef int32_t					(*t_colourFunc)(int32_t iterations,
-								int32_t max_iterations);
+								int32_t max_iterations, int32_t extra_param);
 typedef int32_t					(*t_handerAction)();
 
 enum e_fractalId
@@ -53,9 +53,10 @@ enum e_fractalId
 
 enum e_colourScheme
 {
-	DefaultBlue = 0,
-	DefaultGreen,
-	DefaultRed
+	DefaultColour = 0,
+	RandomAll,
+	Drugs,
+	RandomDrugs
 };
 
 // Fill later, when will be working on multi-threading
@@ -66,6 +67,7 @@ struct s_threadInfo
 	int32_t		start_line;
 	int32_t		end_line;
 	t_fractol	*fractol;
+	int32_t		random_factor;
 };
 
 struct s_complex
@@ -125,7 +127,7 @@ void		fractolDraw(t_fractol *fractol);
 // Returns integer (colour) depending on the amount of iterations
 // it took to fail the set inclusion rule
 int32_t		generateColour(int32_t iterations, int32_t max_iterations,
-				t_colourScheme colour_scheme);
+				t_colourScheme colour_scheme, int32_t random_factor);
 
 // Prints error message and exits the program
 void		panic(const char *errstr);
@@ -177,5 +179,7 @@ int32_t		zoomFractal(int32_t x, int32_t y, double factor,
 
 // Changes parameter for Julia-type of fractals according to the mouse position
 int32_t		changeParam(int32_t x, int32_t y, t_fractol *fractol);
+
+int32_t		testingColour(t_fractol *fractol, t_complex point);
 
 #endif

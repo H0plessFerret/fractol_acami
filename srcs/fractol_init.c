@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 17:06:02 by acami             #+#    #+#             */
-/*   Updated: 2021/06/19 17:13:59 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/19 20:00:05 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,15 @@ void	fractolFunctionInit(t_fractol *fractol)
 {
 	static const t_fractalInfo	frac_info[FRACTALS_SUPPORTED] = {
 		[Mandelbrot] = {-2., 1., -1.5, 1.5, mandelbrotEq, 50, 7, {0., 0.},
-			DefaultBlue},
+			DefaultColour},
 		[Julia] = {-2., 2., -2., 2., juliaEq, 50, 6, {-0.89, -0.235000},
-			DefaultBlue},
-		[BurningShip] = {-2., 1., -1., 2, burningShipEq, 50, 7, {0., 0.},
-			DefaultBlue}
+			DefaultColour},
+		[BurningShip] = {-2., 1., -1., 2., burningShipEq, 50, 7, {0., 0.},
+			DefaultColour}
 	};
 	t_fractalId					curr_id;
 
-	curr_id = (fractol->fract_id) & FRACTALS_SUPPORTED;
+	curr_id = (fractol->fract_id) % FRACTALS_SUPPORTED;
 	fractol->re_min = frac_info[curr_id].re_min_start;
 	fractol->re_max = frac_info[curr_id].re_max_start;
 	fractol->im_min = frac_info[curr_id].im_min_start;
