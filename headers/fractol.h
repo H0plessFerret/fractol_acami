@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 15:25:22 by acami             #+#    #+#             */
-/*   Updated: 2021/06/20 17:19:03 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/20 17:34:24 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@
 # include <pthread.h>
 # include "mlx.h"
 # include "error_messages.h"
-
-#include <stdio.h>
 
 typedef enum e_fractalId		t_fractalId;
 typedef enum e_colourScheme		t_colourScheme;

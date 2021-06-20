@@ -6,12 +6,37 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 18:55:00 by acami             #+#    #+#             */
-/*   Updated: 2021/06/20 15:48:39 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/20 17:34:19 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include "key_codes.h"
+
+// Frick norme, all my homies hate norme!
+static int32_t	keyPressedHandlerExtra(int32_t key, t_fractol *fractol)
+{
+	if (key == KEYBOARD_MINUS)
+	{
+		fractol->max_iterations = fractol->max_iterations * 10 / 14;
+		fractolDraw(fractol);
+	}
+	else if (key == KEYBOARD_UP)
+	{
+		fractol->colour_scheme = (fractol->colour_scheme
+				+ 1) % COLOURS_SUPPORTED;
+		fractolDraw(fractol);
+	}
+	else if (key == KEYBOARD_DOWN)
+	{
+		fractol->colour_scheme = (fractol->colour_scheme
+				+ COLOURS_SUPPORTED - 1) % COLOURS_SUPPORTED;
+		fractolDraw(fractol);
+	}
+	else if (key == KEYBOARD_Q)
+		fractolDraw(fractol);
+	return (0);
+}
 
 // Need to find a way to get rid of this ugly if else mountain :c
 int32_t	keyPressHandler(int32_t key, t_fractol *fractol)
@@ -38,30 +63,9 @@ int32_t	keyPressHandler(int32_t key, t_fractol *fractol)
 	else if (key == KEYBOARD_PLUS)
 	{
 		fractol->max_iterations = fractol->max_iterations * 14 / 10;
-		printf("%d\n", fractol->max_iterations);
 		fractolDraw(fractol);
 	}
-	else if (key == KEYBOARD_MINUS)
-	{
-		fractol->max_iterations = fractol->max_iterations * 10 / 14;
-		printf("%d\n", fractol->max_iterations);
-		fractolDraw(fractol);
-	}
-	else if (key == KEYBOARD_UP)
-	{
-		fractol->colour_scheme = (fractol->colour_scheme
-				+ 1) % COLOURS_SUPPORTED;
-		fractolDraw(fractol);
-	}
-	else if (key == KEYBOARD_DOWN)
-	{
-		fractol->colour_scheme = (fractol->colour_scheme
-				+ COLOURS_SUPPORTED - 1) % COLOURS_SUPPORTED;
-		fractolDraw(fractol);
-	}
-	else if (key == KEYBOARD_Q)
-		fractolDraw(fractol);
-	return (0);
+	return (keyPressedHandlerExtra(key, fractol));
 }
 
 int32_t	buttonPressHandler(int32_t button, int x, int y, t_fractol *fractol)
