@@ -6,7 +6,7 @@
 #    By: acami <acami@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/14 15:34:26 by acami             #+#    #+#              #
-#    Updated: 2021/06/20 17:27:09 by acami            ###   ########.fr        #
+#    Updated: 2021/06/20 18:24:27 by acami            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,6 +63,8 @@ $(NAME) :	 	$(OBJ_DIR) $(OBJS)
 
 all : 			$(NAME)
 
+bonus:			all
+
 include $(wildcard $(OBJ_DIR)*.d)
 
 $(OBJ_DIR) :
@@ -104,4 +106,4 @@ fclean :		fclean_libs fclean_objs
 
 re :			fclean all
 
-.PHONY : 		all clean_libs clean_objs clean fclean_libs fclean_objs fclean re
+.PHONY : 		all clean_libs clean_objs clean fclean_libs fclean_objs fclean re bonus
