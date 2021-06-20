@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 15:25:22 by acami             #+#    #+#             */
-/*   Updated: 2021/06/19 19:55:55 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/20 17:19:03 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,9 +124,13 @@ void		fractolInit(t_fractol *fractol);
 // Draw the fractal currently held in memory
 void		fractolDraw(t_fractol *fractol);
 
+// Returns colour value appropriate for the current point
+int32_t		generateColour(const t_fractol *fractol, const t_complex *point,
+				int32_t random_factor);
+
 // Returns integer (colour) depending on the amount of iterations
 // it took to fail the set inclusion rule
-int32_t		generateColour(int32_t iterations, int32_t max_iterations,
+int32_t		findPointColour(int32_t iterations, int32_t max_iterations,
 				t_colourScheme colour_scheme, int32_t random_factor);
 
 // Prints error message and exits the program
@@ -179,7 +183,5 @@ int32_t		zoomFractal(int32_t x, int32_t y, double factor,
 
 // Changes parameter for Julia-type of fractals according to the mouse position
 int32_t		changeParam(int32_t x, int32_t y, t_fractol *fractol);
-
-int32_t		testingColour(t_fractol *fractol, t_complex point);
 
 #endif
