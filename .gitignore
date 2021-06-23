@@ -2,3 +2,4 @@ fractol
 .vscode*
 objs*
 *.a
+minilibx_opengl/*.o
