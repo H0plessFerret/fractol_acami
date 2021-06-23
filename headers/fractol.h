@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 15:25:22 by acami             #+#    #+#             */
-/*   Updated: 2021/06/20 17:34:24 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/23 16:54:58 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef int32_t					(*t_equation)(const t_fractol *fractol,
 typedef int32_t					(*t_colourFunc)(int32_t iterations,
 								int32_t max_iterations, int32_t extra_param);
 typedef int32_t					(*t_handerAction)();
+typedef void					(*t_keyAction)(int32_t key, t_fractol *fractol);
 
 enum e_fractalId
 {
@@ -153,33 +154,56 @@ int32_t		juliaEq(const t_fractol *fractol, t_complex point);
 int32_t		burningShipEq(const t_fractol *fractol, t_complex point);
 
 // ---------------------- EVENT  HANDLING ---------------------- //
-
+/*
+		[KEYBOARD_W] = translateFractal,
+		[KEYBOARD_A] = translateFractal,
+		[KEYBOARD_S] = translateFractal,
+		[KEYBOARD_D] = translateFractal,
+		[KEYBOARD_R] = resetFractal,
+		[KEYBOARD_ESC] = closeWindow,
+		[KEYBOARD_PLUS] = changeIterations,
+		[KEYBOARD_MINUS] = changeIterations,
+		[KEYBOARD_Q] = redrawFractal,
+		[KEYBOARD_UP] = changeColour,
+		[KEYBOARD_DOWN] = changeColour
+*/
 // Closes window (both from ESC and pressing the button on the window)
-int32_t		closeWindow(void);
+void		closeWindow(int32_t key, t_fractol *fractol);
 
 // Maps key presses to actions
-int32_t		keyPressHandler(int32_t key, t_fractol *fractol);
+void		keyPressHandler(int32_t key, t_fractol *fractol);
 
 // Maps button presses to actions
-int32_t		buttonPressHandler(int32_t button, int x, int y,
+void		buttonPressHandler(int32_t button, int x, int y,
 				t_fractol *fractol);
 
 // Maps button releases to actions
-int32_t		buttonReleaseHandler(int32_t button, int x, int y,
+void		buttonReleaseHandler(int32_t button, int x, int y,
 				t_fractol *fractol);
 
 // Handles mouse movements
-int32_t		motionHandler(int32_t x, int32_t y, t_fractol *fractol);
+void		motionHandler(int32_t x, int32_t y, t_fractol *fractol);
 
 // Translates fractal x_shift to the right and im_shift up
-int32_t		translateFractal(double re_shift, double im_shift,
-				t_fractol *fractol);
+void		translateFractal(int32_t key, t_fractol *fractol);
+
+// Reset fractal to default values
+void		resetFractal(int32_t key, t_fractol *fractol);
+
+// Redraws fractal
+void		updateFractal(int32_t key, t_fractol *fractol);
+
+// Changes max_iteration param in fractol
+void		changeIterations(int32_t key, t_fractol *fractol);
+
+// Changes colour_scheme param in fractol
+void		changeColour(int32_t key, t_fractol *fractol);
 
 // Zooms in on the point (x, y) with the zoom factor factor
-int32_t		zoomFractal(int32_t x, int32_t y, double factor,
+int32_t		zoomFractal(int32_t x, int32_t y, int32_t button,
 				t_fractol *fractol);
 
 // Changes parameter for Julia-type of fractals according to the mouse position
-int32_t		changeParam(int32_t x, int32_t y, t_fractol *fractol);
+int32_t		changeParam(int32_t x, int32_t y, int32_t key, t_fractol *fractol);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: acami <acami@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/14 15:34:26 by acami             #+#    #+#              #
-#    Updated: 2021/06/22 13:14:41 by acami            ###   ########.fr        #
+#    Updated: 2021/06/23 16:47:52 by acami            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,7 @@ $(NAME) :	 	$(OBJ_DIR) $(OBJS)
 				@echo "$(NAME): $(GREEN) Calling make in $(MINILIBX_DIR) $(RESET)"
 				@make -sC $(MINILIBX_DIR) all
 				@echo "$(NAME): $(GREEN) Creating $(NAME) $(RESET)"
-				$(CC) $(CFLAGS) $(LIBS) $(INCLUDES) $(OBJS) -o $(NAME)
+				$(CC) $(CFLAGS) $(LIBS) $(INCLUDES) $(MULTITHREAD_ON) $(OBJS) -o $(NAME)
 				@echo "$(NAME): $(GREEN) >>>>>>>>>> DONE <<<<<<<<<< $(RESET)"
 
 all : 			$(NAME)
@@ -71,7 +71,7 @@ $(OBJ_DIR) :
 				@echo "$(NAME): $(GREEN)$(OBJ_DIR) was created$(RESET)"
 
 $(OBJ_DIR)%.o :	$(SRC_DIR)%.c		
-				$(CC) $(CFLAGS) -c $(INCLUDES) $< -o $@ -MMD
+				$(CC) $(CFLAGS) -c $(INCLUDES) $(MULTITHREAD_ON) $< -o $@ -MMD
 
 clean_libs :
 				@echo "$(NAME): $(BLUE) Calling clean in $(LIBFT_DIR) $(RESET)"

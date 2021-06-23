@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 17:06:02 by acami             #+#    #+#             */
-/*   Updated: 2021/06/20 16:41:59 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/23 16:47:03 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,16 @@
 
 static void	fractolHooksInit(t_fractol *fractol)
 {
-	mlx_hook(fractol->window, DESTROYNOTIFY, NOEVENTMASK, closeWindow, NULL);
-	mlx_hook(fractol->window, KEYPRESS, NOEVENTMASK, keyPressHandler, fractol);
-	mlx_hook(fractol->window, BUTTONPRESS, NOEVENTMASK, buttonPressHandler,
-		fractol);
+	mlx_hook(fractol->window, DESTROYNOTIFY, NOEVENTMASK,
+		(int (*)())closeWindow, NULL);
+	mlx_hook(fractol->window, KEYPRESS, NOEVENTMASK,
+		(int (*)())keyPressHandler, fractol);
+	mlx_hook(fractol->window, BUTTONPRESS, NOEVENTMASK,
+		(int (*)())buttonPressHandler, fractol);
 	mlx_hook(fractol->window, BUTTONRELEASE, NOEVENTMASK,
-		buttonReleaseHandler, fractol);
-	mlx_hook(fractol->window, MOTIONNOTIFY, NOEVENTMASK, motionHandler,
-		fractol);
+		(int (*)())buttonReleaseHandler, fractol);
+	mlx_hook(fractol->window, MOTIONNOTIFY, NOEVENTMASK,
+		(int (*)())motionHandler, fractol);
 }
 
 void	fractolInit(t_fractol *fractol)
