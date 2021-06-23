@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 14:27:35 by acami             #+#    #+#             */
-/*   Updated: 2021/06/19 16:59:34 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/23 17:12:31 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static int32_t	parseParams(char **argv, t_fractol *fractol, int32_t curr_arg)
 	return (-1);
 }
 
-t_fractalId	parseInput(int argc, char **argv, t_fractol *fractol)
+void	parseInput(int argc, char **argv, t_fractol *fractol)
 {
 	t_fractalId	res;
 	int32_t		curr_arg;
@@ -86,5 +86,5 @@ t_fractalId	parseInput(int argc, char **argv, t_fractol *fractol)
 	res = parseName(argv[curr_arg]);
 	if (res == Error || curr_arg + 1 < argc)
 		xShowHelp(argv[curr_arg]);
-	return (res);
+	fractol->fract_id = res;
 }

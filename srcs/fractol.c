@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 13:47:44 by acami             #+#    #+#             */
-/*   Updated: 2021/06/20 16:59:42 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/23 17:12:44 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main(int argc, char **argv)
 {
 	t_fractol	fractol;
 
-	fractol.fract_id = parseInput(argc, argv, &fractol);
+	parseInput(argc, argv, &fractol);
 	fractolInit(&fractol);
 	fractolDraw(&fractol);
 	mlx_loop(fractol.mlx);
