@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 15:25:22 by acami             #+#    #+#             */
-/*   Updated: 2021/06/23 16:54:58 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/23 17:06:36 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ typedef int32_t					(*t_colourFunc)(int32_t iterations,
 								int32_t max_iterations, int32_t extra_param);
 typedef int32_t					(*t_handerAction)();
 typedef void					(*t_keyAction)(int32_t key, t_fractol *fractol);
+typedef void					(*t_buttonAction)(int32_t x, int32_t y,
+								int32_t key, t_fractol *fractol);
 
 enum e_fractalId
 {
@@ -154,19 +156,6 @@ int32_t		juliaEq(const t_fractol *fractol, t_complex point);
 int32_t		burningShipEq(const t_fractol *fractol, t_complex point);
 
 // ---------------------- EVENT  HANDLING ---------------------- //
-/*
-		[KEYBOARD_W] = translateFractal,
-		[KEYBOARD_A] = translateFractal,
-		[KEYBOARD_S] = translateFractal,
-		[KEYBOARD_D] = translateFractal,
-		[KEYBOARD_R] = resetFractal,
-		[KEYBOARD_ESC] = closeWindow,
-		[KEYBOARD_PLUS] = changeIterations,
-		[KEYBOARD_MINUS] = changeIterations,
-		[KEYBOARD_Q] = redrawFractal,
-		[KEYBOARD_UP] = changeColour,
-		[KEYBOARD_DOWN] = changeColour
-*/
 // Closes window (both from ESC and pressing the button on the window)
 void		closeWindow(int32_t key, t_fractol *fractol);
 
@@ -200,10 +189,11 @@ void		changeIterations(int32_t key, t_fractol *fractol);
 void		changeColour(int32_t key, t_fractol *fractol);
 
 // Zooms in on the point (x, y) with the zoom factor factor
-int32_t		zoomFractal(int32_t x, int32_t y, int32_t button,
+void		zoomFractal(int32_t x, int32_t y, int32_t button,
 				t_fractol *fractol);
 
 // Changes parameter for Julia-type of fractals according to the mouse position
-int32_t		changeParam(int32_t x, int32_t y, int32_t key, t_fractol *fractol);
+void		changeParam(int32_t x, int32_t y, int32_t button,
+				t_fractol *fractol);
 
 #endif

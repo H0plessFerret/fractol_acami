@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/16 18:57:28 by acami             #+#    #+#             */
-/*   Updated: 2021/06/23 16:53:24 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/23 17:06:06 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,21 +63,24 @@ static double	interpolate(double start, double end, double interpolation)
 	return (start + ((end - start) * interpolation));
 }
 
-int32_t	zoomFractal(int32_t x, int32_t y, int32_t button, t_fractol *fractol)
+void	zoomFractal(int32_t x, int32_t y, int32_t button, t_fractol *fractol)
 {
 	t_complex	mouse_pos;
 	double		interpolation;
 
-	setComplex(&(mouse_pos),
-		(double)x * (fractol->re_max - fractol->re_min) / fractol->width
-		+ fractol->re_min,
-		(double)y * -1. * (fractol->im_max - fractol->im_min)
-		/ fractol->height + fractol->im_max);
-	interpolation = 0;
+	setComplex(&(mouse_pos), (double)x * (fractol->re_max - fractol->re_min)
+		/ fractol->width + fractol->re_min, (double)y * -1. * (fractol->im_max
+			- fractol->im_min) / fractol->height + fractol->im_max);
 	if (button == M_SCROLL_UP)
+	{
 		interpolation = 1.0 / 0.8;
-	else if (button == M_SCROLL_DOWN)
+		fractol->max_iterations -= fractol->iteration_change;
+	}
+	else
+	{
 		interpolation = 1.0 / 1.2;
+		fractol->max_iterations += fractol->iteration_change;
+	}
 	fractol->re_min = interpolate(mouse_pos.real, fractol->re_min,
 			interpolation);
 	fractol->re_max = interpolate(mouse_pos.real, fractol->re_max,
@@ -86,6 +89,4 @@ int32_t	zoomFractal(int32_t x, int32_t y, int32_t button, t_fractol *fractol)
 			interpolation);
 	fractol->im_max = interpolate(mouse_pos.imaginary, fractol->im_max,
 			interpolation);
-	fractolDraw(fractol);
-	return (0);
 }

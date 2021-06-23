@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 17:46:37 by acami             #+#    #+#             */
-/*   Updated: 2021/06/23 16:19:10 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/23 17:01:56 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # else
 // Key code defines for macos (default)
 #  define MAX_KEYCODE		128
+#  define MAX_BUTTON		10
 
 #  define M_LMB				1
 #  define M_RMB				2

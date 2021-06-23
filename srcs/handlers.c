@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 18:55:00 by acami             #+#    #+#             */
-/*   Updated: 2021/06/23 16:56:33 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/23 17:06:54 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,25 +38,16 @@ void	keyPressHandler(int32_t key, t_fractol *fractol)
 
 void	buttonPressHandler(int32_t button, int x, int y, t_fractol *fractol)
 {
-	if (button == M_LMB)
+	static const t_buttonAction	button_action_func[MAX_BUTTON] = {
+		[M_LMB] = changeParam,
+		[M_SCROLL_UP] = zoomFractal,
+		[M_SCROLL_DOWN] = zoomFractal
+	};
+
+	if (button_action_func[button] != NULL)
 	{
-		fractol->lmb_pressed = true;
-		setComplex(&(fractol->extra_param),
-			(double)x * (fractol->re_max - fractol->re_min) / fractol->width
-			+ fractol->re_min,
-			(double)y * -1. * (fractol->im_max - fractol->im_min)
-			/ fractol->height + fractol->im_max);
+		button_action_func[button](x, y, button, fractol);
 		fractolDraw(fractol);
-	}
-	else if (button == M_SCROLL_UP)
-	{
-		fractol->max_iterations -= fractol->iteration_change;
-		zoomFractal(x, y, button, fractol);
-	}
-	else if (button == M_SCROLL_DOWN)
-	{
-		fractol->max_iterations += fractol->iteration_change;
-		zoomFractal(x, y, button, fractol);
 	}
 }
 

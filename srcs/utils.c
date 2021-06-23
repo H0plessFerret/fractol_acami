@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 15:24:37 by acami             #+#    #+#             */
-/*   Updated: 2021/06/23 16:56:01 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/23 17:03:21 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,23 +32,4 @@ void	setComplex(t_complex *number, double new_re, double new_im)
 {
 	number->real = new_re;
 	number->imaginary = new_im;
-}
-
-void	closeWindow(int32_t key, t_fractol *fractol)
-{
-	(void)key;
-	(void)fractol;
-	exit(0);
-}
-
-void	resetFractal(int32_t key, t_fractol *fractol)
-{
-	(void)key;
-	fractolFunctionInit(fractol);
-}
-
-void	updateFractal(int32_t key, t_fractol *fractol)
-{
-	(void)key;
-	(void)fractol;
 }
